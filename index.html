@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PanelX • Professional Panel Hub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: #0b0d11;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* LOADING OVERLAY */
+    #loading-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #0b0d11;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loading-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-ring {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 5px solid rgba(0, 255, 200, 0.08);
+      border-top: 5px solid #00f5d4;
+      animation: spin 0.9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+      box-shadow: 0 0 30px rgba(0, 245, 212, 0.15);
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loader-text {
+      margin-top: 28px;
+      color: #b7c0d0;
+      font-weight: 400;
+      letter-spacing: 2px;
+      font-size: 15px;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.02);
+      padding: 8px 24px;
+      border-radius: 40px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    /* MAIN APP */
+    #app {
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      background: #12161c;
+      border-radius: 48px;
+      padding: 30px 35px 45px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.02);
+      backdrop-filter: blur(2px);
+      transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+
+    /* HEADER */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand h1 {
+      color: #f0f4ff;
+      font-weight: 600;
+      font-size: 26px;
+      letter-spacing: -0.5px;
+    }
+    .brand span {
+      color: #00f5d4;
+      font-weight: 300;
+    }
+    .contact-btn {
+      background: rgba(0, 245, 212, 0.04);
+      border: 1px solid rgba(0, 245, 212, 0.12);
+      padding: 10px 24px;
+      border-radius: 40px;
+      color: #cbd5e6;
+      font-size: 15px;
+      font-weight: 400;
+      transition: all 0.2s;
+      backdrop-filter: blur(4px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .contact-btn:hover {
+      background: rgba(0, 245, 212, 0.08);
+      border-color: rgba(0, 245, 212, 0.25);
+      color: #fff;
+    }
+    .contact-btn i {
+      color: #00f5d4;
+      font-style: normal;
+      font-weight: 300;
+    }
+
+    /* TOS / INFO BANNER */
+    .tos-banner {
+      margin: 25px 0 28px;
+      background: rgba(255, 255, 255, 0.01);
+      border-radius: 24px;
+      padding: 20px 28px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(4px);
+    }
+    .tos-banner p {
+      color: #98a9c7;
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 70%;
+    }
+    .tos-banner strong {
+      color: #dfe7f5;
+      font-weight: 500;
+    }
+    .tos-banner .risk {
+      color: #ffb37b;
+      background: rgba(255, 180, 120, 0.05);
+      padding: 4px 16px;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 180, 120, 0.1);
+      font-size: 13px;
+      letter-spacing: 0.3px;
+    }
+
+    /* MAIN NAV */
+    .panel-nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+      background: rgba(255,255,255,0.01);
+      padding: 8px 10px;
+      border-radius: 60px;
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+    .panel-nav button {
+      background: transparent;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      color: #9aabca;
+      font-weight: 450;
+      font-size: 15px;
+      transition: all 0.18s;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      letter-spacing: -0.2px;
+      flex: 0 1 auto;
+    }
+    .panel-nav button:hover {
+      background: rgba(255,255,255,0.02);
+      color: #dce5f5;
+    }
+    .panel-nav button.active {
+      background: rgba(0, 245, 212, 0.06);
+      color: #e0f5f0;
+      box-shadow: 0 0 0 1px rgba(0, 245, 212, 0.1);
+    }
+
+    /* CARD GRID */
+    .panels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 24px;
+      margin-top: 6px;
+    }
+    .panel-card {
+      background: rgba(255,255,255,0.01);
+      border-radius: 32px;
+      padding: 22px 20px 25px;
+      border: 1px solid rgba(255,255,255,0.02);
+      transition: all 0.25s;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .panel-card:hover {
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(255,255,255,0.04);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .panel-card .title {
+      color: #f0f4ff;
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .panel-card .badge {
+      font-size: 11px;
+      background: rgba(0,245,212,0.05);
+      padding: 4px 12px;
+      border-radius: 40px;
+      color: #8acfc0;
+      border: 1px solid rgba(0,245,212,0.06);
+    }
+    .panel-card .sub {
+      color: #889bc0;
+      font-size: 14px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.02);
+      padding-bottom: 14px;
+    }
+    .price-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin: 14px 0 8px;
+    }
+    .price-tag {
+      background: rgba(255,255,255,0.02);
+      padding: 6px 12px 6px 14px;
+      border-radius: 40px;
+      font-size: 13px;
+      color: #bcc9e5;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(255,255,255,0.02);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .price-tag:hover {
+      background: rgba(0, 245, 212, 0.03);
+      border-color: rgba(0, 245, 212, 0.08);
+      color: #fff;
+    }
+    .price-tag .amount {
+      color: #d4e0f5;
+      font-weight: 500;
+    }
+    .price-tag .stock {
+      font-size: 10px;
+      color: #5d729c;
+      margin-left: 4px;
+    }
+    .stock-fake {
+      color: #5d729c;
+      font-size: 11px;
+      background: rgba(255,255,255,0.01);
+      padding: 2px 10px;
+      border-radius: 30px;
+    }
+
+    /* QR MODAL */
+    .qr-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 4, 8, 0.8);
+      backdrop-filter: blur(14px);
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+    }
+    .qr-modal.open {
+      display: flex;
+    }
+    .qr-box {
+      background: #181f28;
+      border-radius: 48px;
+      padding: 40px 50px;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.02);
+      box-shadow: 0 40px 90px rgba(0,0,0,0.9);
+    }
+    .qr-box img {
+      width: 100%;
+      max-width: 240px;
+      border-radius: 24px;
+      background: white;
+      padding: 10px;
+      margin: 10px auto;
+      display: block;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .qr-box .close-qr {
+      margin-top: 30px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.02);
+      padding: 12px 28px;
+      border-radius: 60px;
+      color: #b7cbe5;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .qr-box .close-qr:hover {
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+    }
+    .qr-box .qr-label {
+      color: #889fc9;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="loading-overlay">
+  <div class="loader-ring"></div>
+  <div class="loader-text">initializing panels</div>
+</div>
+
+<!-- QR MODAL -->
+<div id="qrModal" class="qr-modal">
+  <div class="qr-box">
+    <div style="color:#d6e2f5; font-weight: 500; margin-bottom: 6px;">🔲 scan to pay</div>
+    <img id="qrImage" src="qr-placeholder.png" alt="QR placeholder">
+    <div class="qr-label" id="qrLabel">₹499 • Streamer Panel</div>
+    <button class="close-qr" id="closeQrBtn">close</button>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app">
+
+  <div class="top-bar">
+    <div class="brand">
+      <h1>⏣ <span>PANEL</span>X</h1>
+      <span style="color:#475a7a; font-weight:300; font-size:14px; margin-left:6px;">v2</span>
+    </div>
+    <div class="contact-btn" id="contactBtn">
+      <i>✆</i> +91 9366075423
+    </div>
+  </div>
+
+  <!-- TOS / info -->
+  <div class="tos-banner">
+    <p>
+      <strong>⏤ terms of service</strong> &nbsp; use at your own risk. 
+      we do not guarantee uptime, compatibility, or refunds. 
+      all panels are provided as-is.
+    </p>
+    <span class="risk">⚠️ self-responsibility</span>
+  </div>
+
+  <!-- navigation -->
+  <div class="panel-nav" id="panelNav">
+    <button class="active" data-category="root">Root Panels</button>
+    <button data-category="nonroot">Non Root</button>
+    <button data-category="ios">iOS Panels</button>
+  </div>
+
+  <!-- cards container -->
+  <div id="panelsContainer" class="panels-grid"></div>
+
+</div>
+
+<script>
+  // ----- DATA -----
+  const panelData = {
+    root: [
+      { name: "Streamer Panel", badge: "Best Choice", plans: [
+          { duration: "15 days", price: 499, stock: 12 },
+          { duration: "30 days", price: 700, stock: 8 }
+        ]
+      },
+      { name: "ANGRY MODS", badge: "", plans: [
+          { duration: "15 days", price: 199, stock: 20 },
+          { duration: "30 days", price: 350, stock: 15 }
+        ]
+      }
+    ],
+    nonroot: [
+      { name: "Drip Client", badge: "", plans: [
+          { duration: "15 days", price: 350, stock: 9 },
+          { duration: "30 days", price: 650, stock: 5 }
+        ]
+      },
+      { name: "Bala Mods", badge: "", plans: [
+          { duration: "7 days", price: 250, stock: 14 },
+          { duration: "15 days", price: 350, stock: 10 },
+          { duration: "30 days", price: 600, stock: 7 }
+        ]
+      },
+      { name: "XREG Panel", badge: "", plans: [
+          { duration: "1 day", price: 99, stock: 30 },
+          { duration: "7 days", price: 299, stock: 18 },
+          { duration: "15 days", price: 399, stock: 11 },
+          { duration: "30 days", price: 750, stock: 4 }
+        ]
+      }
+    ],
+    ios: [
+      { name: "MIGUL Panel", badge: "stock 0 default", plans: [
+          { duration: "1 day", price: 199, stock: 0 },
+          { duration: "7 days", price: 450, stock: 0 },
+          { duration: "15 days", price: 900, stock: 0 },
+          { duration: "30 days", price: 1300, stock: 0 }
+        ]
+      },
+      { name: "FLUORIDE Panel", badge: "", plans: [
+          { duration: "7 days", price: 350, stock: 5 },
+          { duration: "15 days", price: 600, stock: 3 },
+          { duration: "30 days", price: 900, stock: 2 }
+        ]
+      }
+    ]
+  };
+
+  // DOM refs
+  const container = document.getElementById('panelsContainer');
+  const navBtns = document.querySelectorAll('#panelNav button');
+  const loadingOverlay = document.getElementById('loading-overlay');
+  const qrModal = document.getElementById('qrModal');
+  const qrImage = document.getElementById('qrImage');
+  const qrLabel = document.getElementById('qrLabel');
+  const closeQrBtn = document.getElementById('closeQrBtn');
+  const contactBtn = document.getElementById('contactBtn');
+
+  let currentCategory = 'root';
+
+  // ----- RENDER CARDS -----
+  function renderCategory(category) {
+    const items = panelData[category] || [];
+    let html = '';
+    items.forEach(item => {
+      const plansHtml = item.plans.map(p => {
+        const stockDisplay = p.stock <= 0 ? '🟥 out' : `stock ${p.stock}`;
+        return `<span class="price-tag" data-price="${p.price}" data-name="${item.name}" data-duration="${p.duration}" data-stock="${p.stock}">
+          <span class="amount">₹${p.price}</span> 
+          <span style="color:#6c84b0; font-weight:300;">${p.duration}</span>
+          <span class="stock">${stockDisplay}</span>
+        </span>`;
+      }).join('');
+
+      const badgeHtml = item.badge ? `<span class="badge">${item.badge}</span>` : '';
+      html += `
+        <div class="panel-card">
+          <div class="title">
+            ${item.name}
+            ${badgeHtml}
+          </div>
+          <div class="sub">⚡ click amount to pay</div>
+          <div class="price-row">${plansHtml}</div>
+        </div>
+      `;
+    });
+    container.innerHTML = html;
+  }
+
+  // ----- NAV SWITCH -----
+  navBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      navBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const cat = this.getAttribute('data-category');
+      currentCategory = cat;
+      renderCategory(cat);
+    });
+  });
+
+  // ----- QR CLICK (delegation) -----
+  container.addEventListener('click', function(e) {
+    const tag = e.target.closest('.price-tag');
+    if (!tag) return;
+    const price = tag.getAttribute('data-price');
+    const name = tag.getAttribute('data-name') || 'Panel';
+    const duration = tag.getAttribute('data-duration') || '';
+    const stock = parseInt(tag.getAttribute('data-stock'), 10);
+    if (stock <= 0) {
+      alert('❌ Stock unavailable for this plan.');
+      return;
+    }
+    // show QR modal
+    qrLabel.innerText = `₹${price} • ${name} (${duration})`;
+    // keep placeholder image (we use qr-placeholder.png)
+    qrImage.src = 'qr-placeholder.png?t=' + Date.now(); // force reload
+    qrModal.classList.add('open');
+  });
+
+  // close QR
+  function closeQr() {
+    qrModal.classList.remove('open');
+  }
+  closeQrBtn.addEventListener('click', closeQr);
+  qrModal.addEventListener('click', function(e) {
+    if (e.target === this) closeQr();
+  });
+
+  // contact button
+  contactBtn.addEventListener('click', function() {
+    alert('📞 Contact developer: +91 9366075423 (WhatsApp / Telegram)');
+  });
+
+  // ----- LOADING SIMULATION -----
+  window.addEventListener('load', function() {
+    setTimeout(() => {
+      loadingOverlay.classList.add('hidden');
+    }, 800);
+  });
+
+  // initial render
+  renderCategory('root');
+</script>
+
+<!-- QR placeholder image (embedded as fallback) -->
+<!-- we assume qr-placeholder.png exists in same folder -->
+<!-- if not, the img will show broken, but we keep it -->
+</body>
+</html>
