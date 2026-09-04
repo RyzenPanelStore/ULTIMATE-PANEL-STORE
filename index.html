@@ -39,26 +39,26 @@
       pointer-events: none;
     }
     .loader-ring {
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
-      border: 6px solid rgba(0, 255, 200, 0.06);
-      border-top: 6px solid #00f5d4;
+      border: 5px solid rgba(0, 255, 200, 0.06);
+      border-top: 5px solid #00f5d4;
       animation: spin 0.9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-      box-shadow: 0 0 40px rgba(0, 245, 212, 0.08);
+      box-shadow: 0 0 40px rgba(0, 245, 212, 0.1);
     }
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
     .loader-text {
-      margin-top: 30px;
+      margin-top: 28px;
       color: #b7c0d0;
       font-weight: 400;
       letter-spacing: 3px;
-      font-size: 18px;
+      font-size: 16px;
       text-transform: uppercase;
       background: rgba(255,255,255,0.02);
-      padding: 10px 30px;
+      padding: 8px 28px;
       border-radius: 60px;
       border: 1px solid rgba(255,255,255,0.03);
     }
@@ -66,11 +66,11 @@
     /* MAIN APP */
     #app {
       width: 100%;
-      max-width: 1100px;
+      max-width: 1000px;
       margin: 0 auto;
       background: #12161c;
       border-radius: 40px;
-      padding: 24px 20px 35px;
+      padding: 24px 22px 35px;
       box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.02);
       border: 1px solid rgba(255,255,255,0.02);
     }
@@ -80,7 +80,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 22px;
+      padding-bottom: 20px;
       border-bottom: 1px solid rgba(255,255,255,0.03);
       flex-wrap: wrap;
       gap: 12px;
@@ -93,7 +93,7 @@
     .brand h1 {
       color: #f0f4ff;
       font-weight: 700;
-      font-size: 38px;
+      font-size: 30px;
       letter-spacing: -0.5px;
     }
     .brand span {
@@ -103,17 +103,17 @@
     .contact-btn {
       background: rgba(0, 245, 212, 0.04);
       border: 1px solid rgba(0, 245, 212, 0.12);
-      padding: 16px 32px;
+      padding: 12px 26px;
       border-radius: 60px;
       color: #cbd5e6;
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 450;
       transition: all 0.2s;
       backdrop-filter: blur(4px);
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
     .contact-btn:hover {
       background: rgba(0, 245, 212, 0.08);
@@ -124,27 +124,27 @@
       color: #00f5d4;
       font-style: normal;
       font-weight: 300;
-      font-size: 26px;
+      font-size: 22px;
     }
 
     /* TOS / INFO BANNER */
     .tos-banner {
-      margin: 28px 0 30px;
+      margin: 24px 0 28px;
       background: rgba(255, 255, 255, 0.01);
-      border-radius: 32px;
-      padding: 24px 30px;
+      border-radius: 28px;
+      padding: 20px 26px;
       border: 1px solid rgba(255, 255, 255, 0.02);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 14px;
     }
     .tos-banner p {
       color: #98a9c7;
-      font-size: 20px;
-      line-height: 1.7;
-      max-width: 75%;
+      font-size: 17px;
+      line-height: 1.6;
+      max-width: 72%;
     }
     .tos-banner strong {
       color: #dfe7f5;
@@ -153,62 +153,74 @@
     .tos-banner .risk {
       color: #ffb37b;
       background: rgba(255, 180, 120, 0.05);
-      padding: 8px 24px;
+      padding: 6px 20px;
       border-radius: 60px;
       border: 1px solid rgba(255, 180, 120, 0.1);
-      font-size: 18px;
-      letter-spacing: 0.5px;
+      font-size: 16px;
+      letter-spacing: 0.3px;
       font-weight: 500;
     }
 
-    /* MAIN NAV - BIGGER & STACKED ON MOBILE */
+    /* NAVIGATION - GLOWING, ORGANIZED, SEPARATE */
     .panel-nav {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin-bottom: 30px;
-      background: transparent;
+      gap: 12px;
+      margin-bottom: 28px;
       padding: 0;
       border: none;
     }
     .panel-nav button {
       background: rgba(255,255,255,0.01);
       border: 1px solid rgba(255,255,255,0.03);
-      padding: 20px 28px;
+      padding: 16px 24px;
       border-radius: 60px;
       color: #9aabca;
       font-weight: 500;
-      font-size: 28px;
-      transition: all 0.2s;
+      font-size: 22px;
+      transition: all 0.25s;
       cursor: pointer;
       backdrop-filter: blur(4px);
       letter-spacing: -0.2px;
       width: 100%;
       text-align: center;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0, 245, 212, 0);
     }
     .panel-nav button:hover {
-      background: rgba(255,255,255,0.02);
+      background: rgba(255,255,255,0.03);
       color: #dce5f5;
+      border-color: rgba(0, 245, 212, 0.08);
     }
     .panel-nav button.active {
-      background: rgba(0, 245, 212, 0.06);
+      background: rgba(0, 245, 212, 0.05);
       color: #e0f5f0;
-      box-shadow: 0 0 0 1px rgba(0, 245, 212, 0.1);
+      border-color: rgba(0, 245, 212, 0.15);
+      box-shadow: 0 0 30px rgba(0, 245, 212, 0.04), 0 0 60px rgba(0, 245, 212, 0.02);
+      text-shadow: 0 0 20px rgba(0, 245, 212, 0.1);
+    }
+    .panel-nav button::before {
+      content: "▸ ";
+      opacity: 0.3;
+      color: #00f5d4;
+    }
+    .panel-nav button.active::before {
+      opacity: 0.8;
     }
 
-    /* CARDS - VERTICAL SEQUENCE ONE UNDER ANOTHER */
+    /* CARDS - VERTICAL, CLEAN, ORGANIZED */
     .panels-grid {
       display: flex;
       flex-direction: column;
-      gap: 28px;
-      margin-top: 8px;
+      gap: 24px;
+      margin-top: 6px;
       width: 100%;
     }
 
     .panel-card {
       background: rgba(255,255,255,0.01);
-      border-radius: 36px;
-      padding: 28px 26px 32px;
+      border-radius: 32px;
+      padding: 24px 24px 28px;
       border: 1px solid rgba(255,255,255,0.02);
       transition: all 0.25s;
       backdrop-filter: blur(2px);
@@ -217,77 +229,90 @@
     }
     .panel-card:hover {
       background: rgba(255,255,255,0.02);
-      border-color: rgba(255,255,255,0.04);
-      transform: translateY(-3px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      border-color: rgba(0, 245, 212, 0.04);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
     }
     .panel-card .title {
       color: #f0f4ff;
       font-weight: 700;
-      font-size: 38px;
+      font-size: 28px;
       letter-spacing: -0.3px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
+      text-shadow: 0 0 30px rgba(0, 245, 212, 0.03);
+    }
+    .panel-card .title .panel-name {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .panel-card .title .panel-name::before {
+      content: "◆";
+      color: #00f5d4;
+      font-size: 16px;
+      opacity: 0.5;
     }
     .panel-card .badge {
-      font-size: 20px;
+      font-size: 15px;
       background: rgba(0,245,212,0.05);
-      padding: 6px 18px;
+      padding: 4px 16px;
       border-radius: 60px;
       color: #8acfc0;
       border: 1px solid rgba(0,245,212,0.06);
+      font-weight: 400;
     }
     .panel-card .sub {
       color: #889bc0;
-      font-size: 22px;
-      margin-bottom: 22px;
+      font-size: 17px;
+      margin-bottom: 18px;
       border-bottom: 1px solid rgba(255,255,255,0.02);
-      padding-bottom: 18px;
+      padding-bottom: 14px;
+      padding-left: 28px;
     }
     .price-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px 20px;
-      margin: 18px 0 8px;
+      gap: 12px 16px;
+      margin: 14px 0 4px;
+      padding-left: 28px;
     }
     .price-tag {
       background: rgba(255,255,255,0.02);
-      padding: 12px 24px 12px 28px;
+      padding: 10px 20px 10px 24px;
       border-radius: 60px;
-      font-size: 22px;
+      font-size: 18px;
       color: #bcc9e5;
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       border: 1px solid rgba(255,255,255,0.02);
       cursor: pointer;
       transition: all 0.15s;
     }
     .price-tag:hover {
       background: rgba(0, 245, 212, 0.03);
-      border-color: rgba(0, 245, 212, 0.08);
+      border-color: rgba(0, 245, 212, 0.1);
       color: #fff;
+      box-shadow: 0 0 25px rgba(0, 245, 212, 0.02);
     }
     .price-tag .amount {
       color: #d4e0f5;
       font-weight: 600;
-      font-size: 26px;
+      font-size: 22px;
     }
     .price-tag .stock {
-      font-size: 18px;
+      font-size: 14px;
       color: #5d729c;
-      margin-left: 6px;
+      margin-left: 4px;
     }
-    .stock-fake {
-      color: #5d729c;
-      font-size: 18px;
-      background: rgba(255,255,255,0.01);
-      padding: 4px 16px;
-      border-radius: 40px;
+    .price-tag .duration-text {
+      color: #6c84b0;
+      font-weight: 400;
     }
 
     /* QR MODAL */
@@ -307,9 +332,9 @@
     }
     .qr-box {
       background: #181f28;
-      border-radius: 56px;
-      padding: 50px 40px;
-      max-width: 500px;
+      border-radius: 48px;
+      padding: 40px 36px;
+      max-width: 460px;
       width: 100%;
       text-align: center;
       border: 1px solid rgba(255,255,255,0.02);
@@ -317,22 +342,22 @@
     }
     .qr-box img {
       width: 100%;
-      max-width: 280px;
-      border-radius: 32px;
+      max-width: 240px;
+      border-radius: 28px;
       background: white;
-      padding: 12px;
-      margin: 12px auto;
+      padding: 10px;
+      margin: 10px auto;
       display: block;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
     .qr-box .close-qr {
-      margin-top: 36px;
+      margin-top: 30px;
       background: rgba(255,255,255,0.02);
       border: 1px solid rgba(255,255,255,0.02);
-      padding: 18px 40px;
+      padding: 14px 34px;
       border-radius: 80px;
       color: #b7cbe5;
-      font-size: 22px;
+      font-size: 18px;
       cursor: pointer;
       transition: 0.15s;
       width: 100%;
@@ -343,36 +368,47 @@
     }
     .qr-box .qr-label {
       color: #889fc9;
+      font-size: 19px;
+      margin-top: 12px;
+    }
+    .qr-box .qr-head {
+      color: #d6e2f5;
+      font-weight: 500;
+      margin-bottom: 6px;
       font-size: 22px;
-      margin-top: 14px;
     }
 
-    /* MOBILE TWEAKS - BIGGER TEXT */
+    /* MOBILE RESPONSIVE */
     @media (max-width: 600px) {
       body { padding: 10px 8px 30px; }
-      #app { padding: 16px 14px 28px; border-radius: 32px; }
-      .brand h1 { font-size: 34px; }
-      .contact-btn { font-size: 20px; padding: 14px 22px; }
-      .tos-banner p { font-size: 18px; max-width: 100%; }
-      .tos-banner .risk { font-size: 16px; padding: 6px 18px; }
-      .panel-nav button { font-size: 26px; padding: 18px 24px; }
-      .panel-card .title { font-size: 34px; }
-      .panel-card .sub { font-size: 20px; }
-      .price-tag { font-size: 20px; padding: 10px 18px; flex-wrap: wrap; }
-      .price-tag .amount { font-size: 24px; }
-      .price-tag .stock { font-size: 16px; }
-      .qr-box { padding: 30px 20px; }
-      .qr-box img { max-width: 220px; }
-      .qr-box .qr-label { font-size: 20px; }
-      .qr-box .close-qr { font-size: 20px; padding: 14px 20px; }
+      #app { padding: 16px 14px 24px; border-radius: 28px; }
+      .brand h1 { font-size: 26px; }
+      .contact-btn { font-size: 16px; padding: 10px 18px; }
+      .contact-btn i { font-size: 18px; }
+      .tos-banner p { font-size: 15px; max-width: 100%; }
+      .tos-banner .risk { font-size: 14px; padding: 5px 16px; }
+      .panel-nav button { font-size: 20px; padding: 14px 20px; }
+      .panel-card .title { font-size: 24px; }
+      .panel-card .sub { font-size: 15px; padding-left: 20px; }
+      .price-row { padding-left: 20px; gap: 10px 14px; }
+      .price-tag { font-size: 16px; padding: 8px 16px; }
+      .price-tag .amount { font-size: 20px; }
+      .price-tag .stock { font-size: 13px; }
+      .qr-box { padding: 28px 18px; }
+      .qr-box img { max-width: 200px; }
+      .qr-box .qr-label { font-size: 17px; }
+      .qr-box .close-qr { font-size: 17px; padding: 12px 20px; }
+      .panel-card .title .panel-name::before { font-size: 14px; }
     }
 
     @media (max-width: 400px) {
-      .brand h1 { font-size: 28px; }
-      .contact-btn { font-size: 17px; padding: 12px 16px; gap: 6px; }
-      .panel-card .title { font-size: 28px; }
-      .price-tag .amount { font-size: 22px; }
-      .price-tag { font-size: 17px; padding: 8px 14px; }
+      .brand h1 { font-size: 22px; }
+      .contact-btn { font-size: 14px; padding: 8px 14px; }
+      .panel-nav button { font-size: 18px; padding: 12px 16px; }
+      .panel-card .title { font-size: 20px; }
+      .price-tag .amount { font-size: 18px; }
+      .price-tag { font-size: 14px; padding: 6px 12px; }
+      .panel-card .sub { font-size: 14px; }
     }
   </style>
 </head>
@@ -381,13 +417,13 @@
 <!-- LOADING -->
 <div id="loading-overlay">
   <div class="loader-ring"></div>
-  <div class="loader-text">loading panels</div>
+  <div class="loader-text">initializing panels</div>
 </div>
 
 <!-- QR MODAL -->
 <div id="qrModal" class="qr-modal">
   <div class="qr-box">
-    <div style="color:#d6e2f5; font-weight: 500; margin-bottom: 8px; font-size: 26px;">🔲 scan to pay</div>
+    <div class="qr-head">🔲 scan to pay</div>
     <img id="qrImage" src="qr-placeholder.png" alt="QR placeholder">
     <div class="qr-label" id="qrLabel">₹499 • Streamer Panel</div>
     <button class="close-qr" id="closeQrBtn">close</button>
@@ -400,7 +436,7 @@
   <div class="top-bar">
     <div class="brand">
       <h1>⏣ <span>PANEL</span>X</h1>
-      <span style="color:#475a7a; font-weight:300; font-size:20px; margin-left:8px;">v2</span>
+      <span style="color:#475a7a; font-weight:300; font-size:16px; margin-left:6px;">v2</span>
     </div>
     <div class="contact-btn" id="contactBtn">
       <i>✆</i> +91 9366075423
@@ -417,20 +453,20 @@
     <span class="risk">⚠️ self-responsibility</span>
   </div>
 
-  <!-- navigation VERTICAL STACK -->
+  <!-- NAVIGATION - GLOWING, ORGANIZED, SEPARATE -->
   <div class="panel-nav" id="panelNav">
     <button class="active" data-category="root">Root Panels</button>
     <button data-category="nonroot">Non Root</button>
     <button data-category="ios">iOS Panels</button>
   </div>
 
-  <!-- cards container - vertical sequence -->
+  <!-- cards container -->
   <div id="panelsContainer" class="panels-grid"></div>
 
 </div>
 
 <script>
-  // ----- DATA (all panels, sequence preserved) -----
+  // ----- DATA -----
   const panelData = {
     root: [
       { name: "Streamer Panel", badge: "Best Choice", plans: [
@@ -493,7 +529,7 @@
 
   let currentCategory = 'root';
 
-  // ----- RENDER CARDS (vertical sequence) -----
+  // ----- RENDER CARDS (vertical, organized, glowing) -----
   function renderCategory(category) {
     const items = panelData[category] || [];
     let html = '';
@@ -502,7 +538,7 @@
         const stockDisplay = p.stock <= 0 ? '🟥 out' : `stock ${p.stock}`;
         return `<span class="price-tag" data-price="${p.price}" data-name="${item.name}" data-duration="${p.duration}" data-stock="${p.stock}">
           <span class="amount">₹${p.price}</span> 
-          <span style="color:#6c84b0; font-weight:400;">${p.duration}</span>
+          <span class="duration-text">${p.duration}</span>
           <span class="stock">${stockDisplay}</span>
         </span>`;
       }).join('');
@@ -511,7 +547,7 @@
       html += `
         <div class="panel-card">
           <div class="title">
-            ${item.name}
+            <span class="panel-name">${item.name}</span>
             ${badgeHtml}
           </div>
           <div class="sub">⚡ click amount to pay</div>
