@@ -127,88 +127,81 @@
       font-size: 22px;
     }
 
-    /* TOS / INFO BANNER */
-    .tos-banner {
-      margin: 24px 0 28px;
-      background: rgba(255, 255, 255, 0.01);
-      border-radius: 28px;
-      padding: 20px 26px;
-      border: 1px solid rgba(255, 255, 255, 0.02);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-    }
-    .tos-banner p {
-      color: #98a9c7;
-      font-size: 17px;
-      line-height: 1.6;
-      max-width: 72%;
-    }
-    .tos-banner strong {
-      color: #dfe7f5;
-      font-weight: 600;
-    }
-    .tos-banner .risk {
-      color: #ffb37b;
-      background: rgba(255, 180, 120, 0.05);
-      padding: 6px 20px;
-      border-radius: 60px;
-      border: 1px solid rgba(255, 180, 120, 0.1);
-      font-size: 16px;
-      letter-spacing: 0.3px;
-      font-weight: 500;
-    }
-
-    /* NAVIGATION - GLOWING, ORGANIZED, SEPARATE */
+    /* NAVIGATION - GLOWING, HIGH CONTRAST, COOL */
     .panel-nav {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 28px;
+      gap: 14px;
+      margin: 24px 0 30px;
       padding: 0;
       border: none;
     }
     .panel-nav button {
       background: rgba(255,255,255,0.01);
-      border: 1px solid rgba(255,255,255,0.03);
-      padding: 16px 24px;
+      border: 2px solid rgba(255,255,255,0.03);
+      padding: 18px 28px;
       border-radius: 60px;
-      color: #9aabca;
-      font-weight: 500;
-      font-size: 22px;
-      transition: all 0.25s;
+      font-weight: 700;
+      font-size: 26px;
+      transition: all 0.3s ease;
       cursor: pointer;
       backdrop-filter: blur(4px);
-      letter-spacing: -0.2px;
+      letter-spacing: 1px;
       width: 100%;
       text-align: center;
       position: relative;
-      box-shadow: 0 0 20px rgba(0, 245, 212, 0);
+      text-transform: uppercase;
+      color: #6a7fa0;
+      text-shadow: 0 0 10px rgba(255,255,255,0.02);
     }
     .panel-nav button:hover {
-      background: rgba(255,255,255,0.03);
-      color: #dce5f5;
-      border-color: rgba(0, 245, 212, 0.08);
+      transform: scale(1.01);
     }
-    .panel-nav button.active {
-      background: rgba(0, 245, 212, 0.05);
-      color: #e0f5f0;
+    /* Root button - cyan glow */
+    .panel-nav button[data-category="root"] {
       border-color: rgba(0, 245, 212, 0.15);
-      box-shadow: 0 0 30px rgba(0, 245, 212, 0.04), 0 0 60px rgba(0, 245, 212, 0.02);
-      text-shadow: 0 0 20px rgba(0, 245, 212, 0.1);
+      color: #b0e0e0;
     }
-    .panel-nav button::before {
-      content: "▸ ";
-      opacity: 0.3;
-      color: #00f5d4;
+    .panel-nav button[data-category="root"].active {
+      border-color: #00f5d4;
+      color: #e5ffff;
+      background: rgba(0, 245, 212, 0.04);
+      box-shadow: 0 0 40px rgba(0, 245, 212, 0.08), 0 0 80px rgba(0, 245, 212, 0.03);
+      text-shadow: 0 0 30px rgba(0, 245, 212, 0.15);
     }
-    .panel-nav button.active::before {
-      opacity: 0.8;
+    /* Non Root - purple/magenta glow */
+    .panel-nav button[data-category="nonroot"] {
+      border-color: rgba(180, 80, 255, 0.15);
+      color: #b89ad9;
+    }
+    .panel-nav button[data-category="nonroot"].active {
+      border-color: #b45cff;
+      color: #e8d5ff;
+      background: rgba(180, 80, 255, 0.04);
+      box-shadow: 0 0 40px rgba(180, 80, 255, 0.08), 0 0 80px rgba(180, 80, 255, 0.03);
+      text-shadow: 0 0 30px rgba(180, 80, 255, 0.15);
+    }
+    /* iOS - orange/gold glow */
+    .panel-nav button[data-category="ios"] {
+      border-color: rgba(255, 160, 50, 0.15);
+      color: #dbb88c;
+    }
+    .panel-nav button[data-category="ios"].active {
+      border-color: #ffa032;
+      color: #ffebd0;
+      background: rgba(255, 160, 50, 0.04);
+      box-shadow: 0 0 40px rgba(255, 160, 50, 0.08), 0 0 80px rgba(255, 160, 50, 0.03);
+      text-shadow: 0 0 30px rgba(255, 160, 50, 0.15);
+    }
+    .panel-nav button .emoji-bullet {
+      margin-right: 12px;
+      opacity: 0.6;
+    }
+    .panel-nav button.active .emoji-bullet {
+      opacity: 1;
     }
 
-    /* CARDS - VERTICAL, CLEAN, ORGANIZED */
+    /* CARDS - VERTICAL, BORDER GLOW PER CATEGORY */
     .panels-grid {
       display: flex;
       flex-direction: column;
@@ -221,18 +214,44 @@
       background: rgba(255,255,255,0.01);
       border-radius: 32px;
       padding: 24px 24px 28px;
-      border: 1px solid rgba(255,255,255,0.02);
-      transition: all 0.25s;
+      border: 2px solid rgba(255,255,255,0.02);
+      transition: all 0.3s ease;
       backdrop-filter: blur(2px);
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       width: 100%;
     }
     .panel-card:hover {
-      background: rgba(255,255,255,0.02);
-      border-color: rgba(0, 245, 212, 0.04);
       transform: translateY(-2px);
       box-shadow: 0 16px 40px rgba(0,0,0,0.5);
     }
+
+    /* Root cards - cyan border glow */
+    .category-root .panel-card {
+      border-color: rgba(0, 245, 212, 0.06);
+    }
+    .category-root .panel-card:hover {
+      border-color: rgba(0, 245, 212, 0.15);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 30px rgba(0, 245, 212, 0.02);
+    }
+
+    /* Non Root cards - purple border glow */
+    .category-nonroot .panel-card {
+      border-color: rgba(180, 80, 255, 0.06);
+    }
+    .category-nonroot .panel-card:hover {
+      border-color: rgba(180, 80, 255, 0.15);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 30px rgba(180, 80, 255, 0.02);
+    }
+
+    /* iOS cards - orange border glow */
+    .category-ios .panel-card {
+      border-color: rgba(255, 160, 50, 0.06);
+    }
+    .category-ios .panel-card:hover {
+      border-color: rgba(255, 160, 50, 0.15);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 30px rgba(255, 160, 50, 0.02);
+    }
+
     .panel-card .title {
       color: #f0f4ff;
       font-weight: 700;
@@ -244,7 +263,6 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
-      text-shadow: 0 0 30px rgba(0, 245, 212, 0.03);
     }
     .panel-card .title .panel-name {
       display: flex;
@@ -255,7 +273,13 @@
       content: "◆";
       color: #00f5d4;
       font-size: 16px;
-      opacity: 0.5;
+      opacity: 0.4;
+    }
+    .category-nonroot .panel-card .title .panel-name::before {
+      color: #b45cff;
+    }
+    .category-ios .panel-card .title .panel-name::before {
+      color: #ffa032;
     }
     .panel-card .badge {
       font-size: 15px;
@@ -265,6 +289,16 @@
       color: #8acfc0;
       border: 1px solid rgba(0,245,212,0.06);
       font-weight: 400;
+    }
+    .category-nonroot .panel-card .badge {
+      color: #c9a8f0;
+      border-color: rgba(180, 80, 255, 0.06);
+      background: rgba(180, 80, 255, 0.03);
+    }
+    .category-ios .panel-card .badge {
+      color: #f0c898;
+      border-color: rgba(255, 160, 50, 0.06);
+      background: rgba(255, 160, 50, 0.03);
     }
     .panel-card .sub {
       color: #889bc0;
@@ -300,18 +334,50 @@
       color: #fff;
       box-shadow: 0 0 25px rgba(0, 245, 212, 0.02);
     }
+    .category-nonroot .price-tag:hover {
+      background: rgba(180, 80, 255, 0.03);
+      border-color: rgba(180, 80, 255, 0.1);
+    }
+    .category-ios .price-tag:hover {
+      background: rgba(255, 160, 50, 0.03);
+      border-color: rgba(255, 160, 50, 0.1);
+    }
     .price-tag .amount {
       color: #d4e0f5;
       font-weight: 600;
       font-size: 22px;
     }
-    .price-tag .stock {
-      font-size: 14px;
-      color: #5d729c;
-      margin-left: 4px;
-    }
     .price-tag .duration-text {
       color: #6c84b0;
+      font-weight: 400;
+    }
+
+    /* DISCLAIMER - LONG, SMALL FONT, AT THE BOTTOM */
+    .disclaimer-section {
+      margin-top: 45px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.02);
+    }
+    .disclaimer-section .disclaimer-title {
+      color: #5d729c;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      opacity: 0.5;
+    }
+    .disclaimer-section .disclaimer-text {
+      color: #4a5f7e;
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 100%;
+      text-align: justify;
+      font-weight: 300;
+      letter-spacing: 0.2px;
+    }
+    .disclaimer-section .disclaimer-text strong {
+      color: #5d729c;
       font-weight: 400;
     }
 
@@ -385,26 +451,24 @@
       .brand h1 { font-size: 26px; }
       .contact-btn { font-size: 16px; padding: 10px 18px; }
       .contact-btn i { font-size: 18px; }
-      .tos-banner p { font-size: 15px; max-width: 100%; }
-      .tos-banner .risk { font-size: 14px; padding: 5px 16px; }
       .panel-nav button { font-size: 20px; padding: 14px 20px; }
       .panel-card .title { font-size: 24px; }
       .panel-card .sub { font-size: 15px; padding-left: 20px; }
       .price-row { padding-left: 20px; gap: 10px 14px; }
       .price-tag { font-size: 16px; padding: 8px 16px; }
       .price-tag .amount { font-size: 20px; }
-      .price-tag .stock { font-size: 13px; }
       .qr-box { padding: 28px 18px; }
       .qr-box img { max-width: 200px; }
       .qr-box .qr-label { font-size: 17px; }
       .qr-box .close-qr { font-size: 17px; padding: 12px 20px; }
       .panel-card .title .panel-name::before { font-size: 14px; }
+      .disclaimer-section .disclaimer-text { font-size: 12px; }
     }
 
     @media (max-width: 400px) {
       .brand h1 { font-size: 22px; }
       .contact-btn { font-size: 14px; padding: 8px 14px; }
-      .panel-nav button { font-size: 18px; padding: 12px 16px; }
+      .panel-nav button { font-size: 17px; padding: 12px 16px; }
       .panel-card .title { font-size: 20px; }
       .price-tag .amount { font-size: 18px; }
       .price-tag { font-size: 14px; padding: 6px 12px; }
@@ -443,75 +507,82 @@
     </div>
   </div>
 
-  <!-- TOS / info -->
-  <div class="tos-banner">
-    <p>
-      <strong>⏤ terms of service</strong> &nbsp; use at your own risk. 
-      we do not guarantee uptime, compatibility, or refunds. 
-      all panels are provided as-is.
-    </p>
-    <span class="risk">⚠️ self-responsibility</span>
-  </div>
-
-  <!-- NAVIGATION - GLOWING, ORGANIZED, SEPARATE -->
+  <!-- NAVIGATION - GLOWING, HIGH CONTRAST, COOL -->
   <div class="panel-nav" id="panelNav">
-    <button class="active" data-category="root">Root Panels</button>
-    <button data-category="nonroot">Non Root</button>
-    <button data-category="ios">iOS Panels</button>
+    <button class="active" data-category="root"><span class="emoji-bullet">⚡</span>Root Panels</button>
+    <button data-category="nonroot"><span class="emoji-bullet">✦</span>Non Root</button>
+    <button data-category="ios"><span class="emoji-bullet">◈</span>iOS Panels</button>
   </div>
 
-  <!-- cards container -->
-  <div id="panelsContainer" class="panels-grid"></div>
+  <!-- cards container with dynamic category class -->
+  <div id="panelsContainer" class="panels-grid category-root"></div>
+
+  <!-- DISCLAIMER - LONG, SMALL FONT, AT THE BOTTOM -->
+  <div class="disclaimer-section">
+    <div class="disclaimer-title">⏤ legal & disclaimer</div>
+    <div class="disclaimer-text">
+      <strong>IMPORTANT NOTICE:</strong> All panels, tools, and services provided on this platform are offered strictly for educational, testing, and research purposes only. 
+      By accessing and using any panel, you acknowledge and agree that you assume full responsibility for any and all consequences arising from your use. 
+      We do not guarantee the functionality, uptime, compatibility, or security of any panel. All panels are provided "as-is" without any warranty, express or implied. 
+      We are not liable for any loss, damage, data breach, or legal repercussions that may occur as a result of using these panels. 
+      It is your sole responsibility to ensure that your use of these panels complies with all applicable laws, regulations, and third-party terms of service. 
+      We do not endorse or encourage any illegal or unethical activities. The developers, owners, and affiliates of this platform shall not be held responsible for any misuse, abuse, or unauthorized use of the provided tools. 
+      By proceeding, you confirm that you have read, understood, and accepted these terms in their entirety. 
+      If you do not agree with any part of this disclaimer, you must immediately discontinue use of this platform and all associated services. 
+      We reserve the right to modify, suspend, or discontinue any panel or service at any time without prior notice. 
+      This disclaimer is subject to change without notice, and your continued use constitutes acceptance of any updates.
+    </div>
+  </div>
 
 </div>
 
 <script>
-  // ----- DATA -----
+  // ----- DATA (NO FAKE STOCK) -----
   const panelData = {
     root: [
       { name: "Streamer Panel", badge: "Best Choice", plans: [
-          { duration: "15 days", price: 499, stock: 12 },
-          { duration: "30 days", price: 700, stock: 8 }
+          { duration: "15 days", price: 499 },
+          { duration: "30 days", price: 700 }
         ]
       },
       { name: "ANGRY MODS", badge: "", plans: [
-          { duration: "15 days", price: 199, stock: 20 },
-          { duration: "30 days", price: 350, stock: 15 }
+          { duration: "15 days", price: 199 },
+          { duration: "30 days", price: 350 }
         ]
       }
     ],
     nonroot: [
       { name: "Drip Client", badge: "", plans: [
-          { duration: "15 days", price: 350, stock: 9 },
-          { duration: "30 days", price: 650, stock: 5 }
+          { duration: "15 days", price: 350 },
+          { duration: "30 days", price: 650 }
         ]
       },
       { name: "Bala Mods", badge: "", plans: [
-          { duration: "7 days", price: 250, stock: 14 },
-          { duration: "15 days", price: 350, stock: 10 },
-          { duration: "30 days", price: 600, stock: 7 }
+          { duration: "7 days", price: 250 },
+          { duration: "15 days", price: 350 },
+          { duration: "30 days", price: 600 }
         ]
       },
       { name: "XREG Panel", badge: "", plans: [
-          { duration: "1 day", price: 99, stock: 30 },
-          { duration: "7 days", price: 299, stock: 18 },
-          { duration: "15 days", price: 399, stock: 11 },
-          { duration: "30 days", price: 750, stock: 4 }
+          { duration: "1 day", price: 99 },
+          { duration: "7 days", price: 299 },
+          { duration: "15 days", price: 399 },
+          { duration: "30 days", price: 750 }
         ]
       }
     ],
     ios: [
       { name: "MIGUL Panel", badge: "stock 0 default", plans: [
-          { duration: "1 day", price: 199, stock: 0 },
-          { duration: "7 days", price: 450, stock: 0 },
-          { duration: "15 days", price: 900, stock: 0 },
-          { duration: "30 days", price: 1300, stock: 0 }
+          { duration: "1 day", price: 199 },
+          { duration: "7 days", price: 450 },
+          { duration: "15 days", price: 900 },
+          { duration: "30 days", price: 1300 }
         ]
       },
       { name: "FLUORIDE Panel", badge: "", plans: [
-          { duration: "7 days", price: 350, stock: 5 },
-          { duration: "15 days", price: 600, stock: 3 },
-          { duration: "30 days", price: 900, stock: 2 }
+          { duration: "7 days", price: 350 },
+          { duration: "15 days", price: 600 },
+          { duration: "30 days", price: 900 }
         ]
       }
     ]
@@ -529,17 +600,15 @@
 
   let currentCategory = 'root';
 
-  // ----- RENDER CARDS (vertical, organized, glowing) -----
+  // ----- RENDER CARDS (no stock) -----
   function renderCategory(category) {
     const items = panelData[category] || [];
     let html = '';
     items.forEach(item => {
       const plansHtml = item.plans.map(p => {
-        const stockDisplay = p.stock <= 0 ? '🟥 out' : `stock ${p.stock}`;
-        return `<span class="price-tag" data-price="${p.price}" data-name="${item.name}" data-duration="${p.duration}" data-stock="${p.stock}">
+        return `<span class="price-tag" data-price="${p.price}" data-name="${item.name}" data-duration="${p.duration}">
           <span class="amount">₹${p.price}</span> 
           <span class="duration-text">${p.duration}</span>
-          <span class="stock">${stockDisplay}</span>
         </span>`;
       }).join('');
 
@@ -556,6 +625,8 @@
       `;
     });
     container.innerHTML = html;
+    // Update category class for border glow
+    container.className = `panels-grid category-${category}`;
   }
 
   // ----- NAV SWITCH -----
@@ -576,11 +647,6 @@
     const price = tag.getAttribute('data-price');
     const name = tag.getAttribute('data-name') || 'Panel';
     const duration = tag.getAttribute('data-duration') || '';
-    const stock = parseInt(tag.getAttribute('data-stock'), 10);
-    if (stock <= 0) {
-      alert('❌ Stock unavailable for this plan.');
-      return;
-    }
     qrLabel.innerText = `₹${price} • ${name} (${duration})`;
     qrImage.src = 'qr-placeholder.png?t=' + Date.now();
     qrModal.classList.add('open');
